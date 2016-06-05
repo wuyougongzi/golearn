@@ -1,5 +1,8 @@
 /*
 go stack struct
+
+implement by list struct
+
 */
 package gostl
 

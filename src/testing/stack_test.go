@@ -1,11 +1,12 @@
-package main
+package testing
 
 import (
 	"fmt"
 	"gostl"
+	"testing"
 )
 
-func main() {
+func TestStack(t *testing.T) {
 	s := new(gostl.Stack)
 	fmt.Println("stack test")
 	s.Push(5)
