@@ -49,3 +49,8 @@ func (s Stack) Empty() bool {
 func (s Stack) Size() int {
 	return s.size
 }
+
+func (s Stack) Clear() {
+	s.top = nil
+	s.size = 0
+}

@@ -59,3 +59,9 @@ func (q *Queue) Empty() bool {
 func (q *Queue) Size() int {
 	return q.size
 }
+
+func (q *Queue) Clear() {
+	q.head = nil
+	q.tail = nil
+	q.size = 0
+}
