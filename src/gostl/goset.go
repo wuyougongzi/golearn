@@ -16,7 +16,7 @@ type TreeNode struct {
 	parent *TreeNode
 	left   *TreeNode
 	right  *TreeNode
-}
+
 
 //some thing strange
 //to visit all binary search tree
@@ -38,18 +38,43 @@ func (node *TreeNode) Next() *TreeNode {
 
 		*/
 		node1 := node
-		tmpNode := node1.parent
-		for node1 == tmpNode.right { //  if tmpNode node is rightnode,like next
-			node1 = tmpNode
-			tmpNode = node1.parent
+		if node1.parent == nil {
+			return nil
+		} else {
+			tmpNode := node1.parent
+			//todo:tmpNode maybe nil because node1.parent is nil
+			for node1 == tmpNode.right { //  if tmpNode node is rightnode,like next
+				node1 = tmpNode
+				if node1 == nil {
+					return nil
+				}
+				tmpNode = node1.parent
+			}
 		}
 		return tmpNode
 	}
 }
 
 //return the node in front of this node
+//opposite to next
 func (node *TreeNode) ForHead() *TreeNode {
-	//todo:
+	if node.left != nil {
+		return node.rightMost()
+	} else {
+		node1 := node
+		if node1.parent == nil{
+			return nil
+		} else {
+			tmpNode := node1.parent
+			for node1 == tmpNode.left{
+				node1 = tmpNode
+				if node1 == nil{
+					return nil
+				}
+				tmpNode = node1.parent
+			}
+		}
+	}
 }
 
 //if has no left node  return itsself
@@ -68,6 +93,14 @@ func (node *TreeNode) rightMost() *TreeNode {
 		mrightNode = mrightNode.right
 	}
 	return mrightNode
+}
+
+func (node *TreeNode) parent() *TreeNode {
+	mparent := node
+	if node.parent != nil {
+		return mparent.parent
+	}
+	return mparent
 }
 
 func (node TreeNode) Value() interface{} {
@@ -174,4 +207,14 @@ func (s Set) PrintSet() {
 		panic("set is empty")
 	}
 
+	node := s.root.Next()
+	for node != nil{
+		fmt.Println(node.Value())
+		node = node.Next()
+	}
 }
+
+func main() {
+		
+}
+
