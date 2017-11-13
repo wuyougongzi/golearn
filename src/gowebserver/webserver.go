@@ -22,7 +22,7 @@ func helloName(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("value: ", strings.Join(v, ""))
 	}
 
-	fmt.Fprintf(w, "Hello chonggege") // write to w to client
+	fmt.Fprintf(w, "Hello chonggege\n") // write to w to client
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -37,9 +37,15 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func httpRequstTestFunc(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Fprintf(w, "today is a good day")
+}
+
 func main() {
 	http.HandleFunc("/", helloName) // //设置访问的路由
 	http.HandleFunc("/login", login)
+	http.HandleFunc("/get", httpRequstTestFunc)
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {
 		log.Fatal("listernAndServe", err)
